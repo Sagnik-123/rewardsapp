@@ -1,0 +1,31 @@
+﻿:root { color-scheme: light dark; --fg:#111; --bg:#fff; --muted:#6b7280; --border:#e5e7eb; --primary:#2563eb; --green:#16a34a; }
+@media (prefers-color-scheme: dark){ :root { --fg:#e5e7eb; --bg:#0b0f1a; --muted:#9ca3af; --border:#1f2937; --primary:#60a5fa; } }
+*{ box-sizing:border-box }
+body{ margin:0; font:14px/1.4 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color:var(--fg); background:var(--bg) }
+.container{ max-width:900px; margin:0 auto; padding:24px }
+.header{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px }
+.header h1{ margin:0; font-size:22px }
+.tabs{ display:flex; gap:8px }
+.tab{ padding:8px 12px; border:1px solid var(--border); background:transparent; border-radius:8px; color:var(--fg); cursor:pointer }
+.tab.active{ background:var(--primary); color:white; border-color:var(--primary) }
+.panel{ border:1px solid var(--border); border-radius:12px; padding:12px; margin-bottom:12px }
+.row{ display:flex; gap:8px; align-items:center }
+.row label{ min-width:180px }
+.progress{ margin-top:8px }
+.bar{ height:6px; background:var(--border); border-radius:999px; overflow:hidden; margin-top:4px }
+.fill{ height:100%; background:var(--green); width:0 }
+.list{ list-style:none; padding:0; margin:0; display:grid; gap:10px }
+.item{ display:flex; align-items:center; justify-content:space-between; gap:12px; border:1px solid var(--border); padding:12px; border-radius:12px }
+.btn{ color:var(--primary); text-decoration:none; font-weight:600 }
+.checkbox{ width:20px; height:20px }
+.muted{ color:var(--muted) }
+.hint{ color:var(--muted); font-size:12px }
+.title{ font-weight:600 }
+.actions{ display:flex; align-items:center; gap:8px }
+.link{ color:var(--primary); text-decoration:none; font-weight:600 }
+.meta{ color:var(--muted); font-size:12px; margin-top:4px }
+.footer{ margin-top:20px; color:var(--muted) }
+.fineprint{ margin-top:12px; color:var(--muted); font-size:12px }
+input[type="number"], input[type="text"], input, select{
+  flex:1; padding:8px 10px; border:1px solid var(--border); border-radius:8px; background:transparent; color:var(--fg)
+}
