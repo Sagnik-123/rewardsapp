@@ -11,19 +11,25 @@ const TASKS: Task[] = [
 { id: "microsoftStart", label: "Microsoft Start streak", link: "https://www.msn.com/en-in/start" },
 ];
 
-const todayKey = () => new Date().toISOString().slice(0, 10);
+function todayKey(): string {
+const d = new Date();
+const y = d.getFullYear();
+const m = String(d.getMonth() + 1).padStart(2, "0");
+const day = String(d.getDate()).padStart(2, "0");
+return y + "-" + m + "-" + day;
+}
 
 export default function RewardsCoach() {
 const [done, setDone] = useState<Record<string, boolean>>({});
 const [goal, setGoal] = useState<number>(() => Number(localStorage.getItem("goal") || 0));
 
 useEffect(() => {
-const saved = localStorage.getItem(tasks-${todayKey()});
+const saved = localStorage.getItem("tasks-" + todayKey());
 setDone(saved ? JSON.parse(saved) : {});
 }, []);
 
 useEffect(() => {
-localStorage.setItem(tasks-${todayKey()}, JSON.stringify(done));
+localStorage.setItem("tasks-" + todayKey(), JSON.stringify(done));
 }, [done]);
 
 useEffect(() => {
@@ -36,7 +42,7 @@ const toggle = (id: string) => setDone((d) => ({ ...d, [id]: !d[id] }));
 return (
 <section>
 <p className="muted">Maximize legit Microsoft Rewards actions for India.</p>
-<div className="panel">
+  <div className="panel">
     <div className="row">
       <label>Monthly point goal</label>
       <input
@@ -44,13 +50,13 @@ return (
         min={0}
         value={goal || ""}
         placeholder="e.g., 8000"
-        onChange={(e) => setGoal(Number(e.target.value))}
+        onChange={(e: any) => setGoal(Number(e.target.value))}
       />
     </div>
     <div className="progress">
       Progress today: {completed}/{TASKS.length}
       <div className="bar">
-        <div className="fill" style={{ width: `${(completed / TASKS.length) * 100}%` }} />
+        <div className="fill" style={{ width: (completed / TASKS.length) * 100 + "%" }} />
       </div>
     </div>
   </div>
@@ -69,7 +75,7 @@ return (
             className="checkbox"
             checked={!!done[t.id]}
             onChange={() => toggle(t.id)}
-            aria-label={`Mark ${t.label} done`}
+            aria-label={"Mark " + t.label + " done"}
           />
         </div>
       </li>
